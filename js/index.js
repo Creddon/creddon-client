@@ -1,4 +1,4 @@
-window.APIURL = "http://127.0.0.1:3000"
+window.APIURL = "https://whispering-mountain-5083.herokuapp.com"
 
 angular.module("Creddon", [
   "ui.router"
@@ -65,7 +65,7 @@ angular.module("Creddon", [
     console.log(data)
     $scope.causes = data
   }).error(log)
-  $http.get("/sponsors/").success(function(data){
+  $http.get(APIURL+"/sponsors/").success(function(data){
     $scope.sponsors = data
   }).error(log)
   $httpf.get("/sponsorLinks/").success(function(data){
