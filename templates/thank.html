@@ -1,0 +1,128 @@
+<div ng-controller="thankCtrl" class="thank-page-container">
+  <div id="gradient" class="container-fluid">
+    <div class="row thank-row">
+      <h1>Thank You for Supporting {{cause.name}}</h1>
+      <p>Your <a ng-href="http://twitter.com/{{username}}">tweet</a> has been published!</p>
+      <p ng-hide="registeredEmail">Sign up here for early access to the Creddon app<br>(iOS & Android). We won't spam you.</p>
+      <p ng-show="registeredEmail">Thanks! We'll keep you in the loop.</p>
+      <div ng-hide="registeredEmail" class="col-md-8 col-md-push-2 signup-col">
+        <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+          <input ng-model="register.email" class="form-control" type="text" placeholder="Email Address">
+          <div class="row">
+            <div class="col-md-8 input-col">
+              <input ng-model="register.reminder" id="signup" name="signup" type="checkbox">
+              <label for="signup">Yes, remind me every two weeks to tweet for a cause.</label>
+            </div>
+            <div class="col-md-4">
+              <button ng-click="registerEmail()" class="support-button">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div onclick="scrollDown()" class="col-md-2 col-md-push-5 down-arrow-row">
+        <img src="img/down-arrow.png" class="down-arrow" alt="Down">
+        <h3>Vote on new features</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container vote-container">
+    <div class="row thank-row">
+      <h2 ng-hide="voted">Which features would you like to see in Creddon's mobile app?</h2>
+      <h2 ng-show="voted">Thanks for voting. We'll try to make it happen!</h2>
+      <div ng-hide="voted" class="col-md-8 col-md-push-2">
+        <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+          <div class="input-col">
+            <div class="vote-row">
+              <input id="choose-sponsor" name="choose-sponsor" ng-model="vote.sponsorChoice" type="checkbox">
+              <label for="choose-sponsor">Choose sponsor from a curated list.</label>
+            </div>
+            <div class="vote-row">
+              <input id="push-notif" name="push-notif"  ng-model="vote.sponsorChoice" type="checkbox">
+              <label for="push-notif">Get push notifications at a frequency you choose.</label>
+            </div>
+            <div class="vote-row">
+              <input id="dedicate-donation" name="dedicate-donation"  ng-model="vote.dedicateDonation" type="checkbox">
+              <label for="dedicate-donation">Option to make your own donation and replace the sponsor with a dedication to someone.</label>
+            </div>
+            <div class="vote-row">
+              <input id="you-donate" name="you-donate"  ng-model="vote.youDonate" type="checkbox">
+              <label for="you-donate">Option to pay the donation yourself and replace the sponsor with more info about the beneficiary.</label>
+            </div>
+            <div class="vote-row">
+              <input id="share-facebook" name="share-facebook"  ng-model="vote.shareFacebook" type="checkbox">
+              <label for="share-facebook">Share on Facebook.</label>
+            </div>
+            <div class="vote-row">
+              <input id="share-instagram" name="share-instagram"  ng-model="vote.shareInstagram" type="checkbox">
+              <label for="share-instagram">Share on Instagram.</label>
+            </div>
+            <div class="vote-row">
+              <input id="activity-stats" name="activity-stats"  ng-model="vote.activityStats" type="checkbox">
+              <label for="activity-stats">See statistics on your own and others' activity.</label>
+            </div>
+            <div class="vote-row">
+              <input id="pay-per-follower" name="pay-per-follower"  ng-model="vote.payPerFollower" type="checkbox">
+              <label for="pay-per-follower">The sponsor's donated amount being proportional to how many followers you have (e.g. $1 per thousand followers).</label>
+            </div>
+            <div class="vote-row">
+              <input id="upload-photo" name="upload-photo"  ng-model="vote.uploadPhoto" type="checkbox">
+              <label for="upload-photo">Upload and share one of your own photos instead.</label>
+            </div>
+          </div>
+          <a ng-click="voteNow()" class="vote-button" type="submit">Vote</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid credit-container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-3">
+        <h2 class="text-center">A Big Thank You to</h2>
+        <br>
+        <p>The team who built this website:</p>
+        <ul>
+          <li><a href="">Brittany Weltner</a>, designer</li>
+          <li><a href="">Irfan Baqui</a>, back-end developer</li>
+          <li><a href="http://iconicdevelopment.co">Joseph Ritchie</a>, full-stack/lead developer</li>
+        </ul>
+        <br>
+        <p>
+          The Startup Weekend winning team that kicked this off
+          <a href="">Beatriz Carrera Campo</a>,
+          <a href="">Daniel Chung</a>,
+          <a href="">Joseph Ritchie</a> (again),
+          <a href="">Mariana Akieda</a> &
+          <a href="">Richard Orlowski</a>.
+        </p>
+        <br>
+        <p>For advice and support:</p>
+        <ul>
+          <li><a href="">Furqan Rydhan</a> at <a href="">Bebo</a></li>
+          <li><a href="">Michael Liao</a> at <a href="">Lab360</a></li>
+          <li>The <a href="">StartupHouse</a> community and crew</li>
+        </ul>
+        <br>
+        <p><a href="">Ladderr</a> for growing our Twitter following.</p>
+        <br>
+        <p>And of course the beneficiaries, sponsors, and users for the positive impact you have on the world.</p>
+        <br>
+        <p>With gratitude,</p>
+        <br>
+        <br>
+        <p>Fredrik Olovsson</p>
+        <p>Founder</p>
+        <br>
+        <br>
+        <a href="" class="vote-button" type="submit" style="color:#fff !important">Read how it started</a>
+      </div>
+    </div>
+  </div>
+  <script src="js/lib/checkbox.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  function scrollDown(){
+    $("html, body").animate({ scrollTop: $(".vote-container").offset().top }, 500);
+  }
+  </script>
+</div>

@@ -1,0 +1,29 @@
+<div ng-controller="causeCtrl" class="cause-page-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>
+          Tweet to support {{cause.name}} with $1 from {{sponsor.name}}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <img ng-src="img/{{cause.username}}-{{sponsor.username}}.png" class="tweeted-img">
+      </div>
+    </div>
+    <div class="row caption-row">
+      <div class="col-md-6">
+        <h2 ng-hide="loading">Caption ({{40 - caption.length}} left)</h2>
+        <h4 ng-show="errorMessage" style="color:red">{{errorMessage}}</h4>
+        <textarea ng-model="caption" ng-hide="loading" maxlength="40" placeholder="Hint: Mention a friend to increase your impact"></textarea>
+        <p ng-hide="loading">*We will add "{{captionEnding}}"" at the end of your caption</p>
+        <loader ng-show="loading"></loader>
+      </div>
+      <div class="col-md-6">
+        <a ng-click="tweet()" ng-hide="loading" class="tweet-button">Tweet this photo</a>
+        <a ui-sref="home" ng-hide="loading" class="other-cause">Choose another cause</a>
+      </div>
+    </div>
+  </div>
+</div>

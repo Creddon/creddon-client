@@ -1,0 +1,35 @@
+<div ng-controller="causesCtrl">
+  <div class="container">
+    <div class="row">
+      <input id="file-reader" type="file" name="file"/>
+      <div ng-show="image && !cropped" class="col-md-12">
+        <h2>Great, now crop your photo!</h2>
+          <div class="crop-area">
+            <img-crop image="image" result-image="croppedImg" area-type="square"></img-crop>
+          </div>
+        <button ng-click="cropped=true">Crop!</button>
+      </div>
+      <div ng-show="cropped" class="crop-area col-md-12">
+        <img ng-src="{{croppedImg}}">
+        <button ng-click="!tw"><i class="fa fa-twitter"></i>Twitter</button>
+        <button ng-click="!fb"><i class="fa fa-facebook"></i>Facebook</button>
+        <button ng-click="!ig"><i class="fa fa-instagram"></i>Instagram</button>
+        <button ng-click="share()">Share!</button>
+      </div>
+      <div ng-hide="image || cropped" class="col-md-12">
+        <h2>Pick a Cause you'd like to support and upload a photo to share!</h2>
+        <div ng-repeat="cause in causes" ng-click="selectCause(cause)" class="cause-card">
+          <div class="col-md-4">
+            <img ng-src="{{cause.logo}}">
+            <!-- <img src="img/creddon.png" class="creddon"> -->
+            <span>{{cause.totalDonations}}</span>
+          </div>
+          <div class="col-md-8">
+            <h3>{{cause.name}}</h3>
+            <p>{{cause.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

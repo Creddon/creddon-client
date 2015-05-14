@@ -1,0 +1,112 @@
+<div ng-controller="homeCtrl">
+  <div id="gradient" class="container-fluid">
+    <div class="row intro-row">
+      <h1>Tweet a Photo to Donate $1</h1>
+      <h3>You Tweet. A Sponsor Pays.</h3>
+    </div>
+    <div class="instructions row">
+      <div class="col-md-4">
+        <h2>1</h2>
+        <h4>Pick a Cause</h4>
+        <img src="img/home-cause.png">
+      </div>
+      <div class="col-md-4">
+        <h2>2</h2>
+        <h4>Tweet a Photo</h4>
+        <img src="img/home-tweet.png">
+      </div>
+      <div class="col-md-4">
+        <h2>3</h2>
+        <h4>Thank You</h4>
+        <img src="img/home-jar.png" id="jar">
+        <p id="jar-text">You made a
+          <br>sponsor donate
+          <br>$1 to the cause.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-push-5 down-arrow-row">
+        <img onclick="scrollDown()" src="img/down-arrow.png" class="down-arrow" alt="Down">
+        <h3>View Causes</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid cause-container">
+    <div class="row">
+      <div ng-repeat="cause in causes" ng-if="cause" class="col-md-6">
+        <h3 class="cause-headline">{{cause.headline}}</h3>
+        <div class="cause row">
+          <img ng-src="img/{{cause.username}}-photo.png" class="cause-img" alt="{{cause.name}} image.">
+          <div class="col-xs-4 bi-col">
+            <div ng-style="{'background-image': 'url(img/'+cause.username+'-logo.png)'}" class="cause-logo"></div>
+          </div>
+          <div class="desc-col col-xs-8">
+            <span class="description" ng-bind-html="renderHTML(cause.description)"></span>
+            <a ng-click="goCause(cause)" class="support-button">I Support This!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid sponsor-container">
+    <h2>Sponsors</h2>
+    <div class="row">
+      <div ng-repeat="sponsorImage in sponsorImages.slice(0,5)" class="col-md-4 sponsor-image-col">
+        <a ng-href="{{sponsorLinks[$index]}}">
+          <div ng-style="{'background-image': 'url(img/'+sponsorImage+')'}" class="img"></div>
+        </a>
+      </div>
+      <div class="col-md-4 sponsor-image-col">
+        <div class="img">
+          <span class="email-us">
+            Want to know more about sponsoring?
+            <a href="mailto:fredrik@creddon.com">Email us</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h3>Previous Sponsors</h3>
+      <div class="col-md-2"></div>
+      <div ng-repeat="sponsorImage in sponsorImages.slice(5)" class="col-md-4 sponsor-image-col">
+        <a ng-href="{{sponsorLinks[$index+5]}}">
+          <div ng-style="{'background-image': 'url(img/'+sponsorImage+')'}" class="img previous-sponsors"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid signup-container">
+    <h3 ng-hide="registeredEmail">Sign up here for early access to the Creddon app<br>(iOS & Android). We won't spam you.</h3>
+    <h3 ng-show="registeredEmail">Thanks! We'll keep you in the loop.</h3>
+    <div ng-hide="registeredEmail" class="row">
+      <div class="col-md-8 col-md-push-2 signup-col">
+        <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+          <input ng-model="register.email" class="form-control" type="text" placeholder="Email Address">
+          <div class="row register-row">
+            <div class="col-md-8 input-col">
+              <input ng-model="register.reminder" id="signup" name="signup" type="checkbox">
+              <label for="signup">Yes, remind me every two weeks to tweet for a cause.</label>
+            </div>
+            <div class="col-md-4">
+              <button ng-click="registerEmail()" class="support-button">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="modal"></div>
+  <div id="overlay" onclick="closeModal()"></div>
+  <script src="js/lib/checkbox.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  function openModalEffect() {
+    $("#modal").html("<span onclick='closeModal()' class='fa fa-close'>X</span>"+"<div style='text-align:left'><br><br><br>“I returned from Nepal 6 days before the earthquake, on a volunteer trip put on by Effect International. I know the Effect team personally, and have met many of the local Nepali volunteers that banded together to launch Nepalrises.com. <br><br>They are amazing, resilient, and bold and I’m confident that the money is going directly towards purchasing food, temporary shelter & medical equipment. Please support them and learn more on <a target='_blank' href='http://effect.org/'>Effect.org</a>.” <br> <br> — Elyse May <a target='_blank' href='http://twitter.com/elyserobyn'>@elyserobyn</a></div>")
+    $("#modal").addClass("active").show()
+    $("#overlay").addClass("active").show()
+  }
+  function closeModal(){
+    $("#modal").removeClass("active").hide()
+    $("#overlay").removeClass("active").hide()
+  }
+  </script>
+</div>
